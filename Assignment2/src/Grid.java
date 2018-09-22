@@ -15,7 +15,7 @@ public class Grid {
 	 */
    public Grid() {
       
-      // TODO: Initialise the board array using ROWS and COLUMNS
+	  board = new Box[ROWS][COLUMNS];											// TODO: Initialise the board array using ROWS and COLUMNS
       
       for (int row = 0; row < ROWS; ++row) {
          for (int col = 0; col < COLUMNS; ++col) {
@@ -30,11 +30,15 @@ public class Grid {
     */
    public boolean isDraw() {
 	   
-	   // TODO: Check whether the game has ended in a draw. 
-	   // Hint: Use a nested loop (see the constructor for an example). Check whether any of the Boxes in the board grid are Player.Empty. If they are, it is not a draw.
-	   // Hint: Return false if it is not a draw, return true if there are not empty positions left
-	   
-
+	   for (int row = 0; row < ROWS; ++row) {									// TODO: Check whether the game has ended in a draw. 
+		   for (int col = 0; col < COLUMNS; ++col) {							// Hint: Use a nested loop (see the constructor for an example). Check whether any of the Boxes in the board grid are Player.Empty. If they are, it is not a draw.
+	             if (board[row][col].content == Player.EMPTY) {					// Hint: Return false if it is not a draw, return true if there are not empty positions left
+	            	 
+	               return false;  												// an empty cell found, not draw, exit																	
+	            }
+	         }
+	      }
+	      return true;  														// no empty cell, it's a draw
    }
  
    /**
@@ -46,20 +50,20 @@ public class Grid {
 		   return true;
 	   }
 	   // Column check
-
-	   // TODO: Check if the currentCol is filled.
-	   // Hint: Use the row code above as a starting point, remember that it goes board[row][column].
-	   
+	   if(board[0][currentCol].content == player && board[1][currentCol].content == player && board[2][currentCol].content == player) {			// TODO: Check if the currentCol is filled.
+		   	return true;																																	// Hint: Use the row code above as a starting point, remember that it goes board[row][column].
+	   }
 	   // Diagonal check (check both directions
 	   if(board[0][0].content == player && board[1][1].content == player && board[2][2].content == player) {
 		   return true;
 	   }
-
-	   // TODO: Check the diagonal in the other direction
-	   
+	   if(board[0][2].content == player && board[1][1].content == player && board[2][0].content == player) {									// TODO: Check the diagonal in the other direction
+		   return true;
+	   }
 	   // No one has won yet
 	   return false;
-   }
+	   }
+	
  
    /**
     * Draws the tic-tac-toe board to the screen
