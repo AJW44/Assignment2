@@ -11,7 +11,11 @@ public class Box {
     */
    public Box(int row, int col) {
 	   
-	   // TODO: Initialise the variables row, col, and content
+	   this.row = row;								// TODO: Initialise the variables row, col, and content
+	   this.col = col;
+	   this.content = Player.EMPTY;
+	   this.content = Player.X;
+	   this.content = Player.O;
   
    }
  
@@ -20,7 +24,7 @@ public class Box {
     */
    public void clear() {
 	   
-      // TODO: Set the value of content to EMPTY (Remember this is an enum)
+      this.content = Player.EMPTY; 					// TODO: Set the value of content to EMPTY (Remember this is an enum)
 	   
    }
  
@@ -29,8 +33,14 @@ public class Box {
     */
    public void display() {
 	   
-	   // TODO: Print the content of this box (" X " if it Player.X, " O " for Player.O and "   " for Player.Empty)
-	   // Hint: Can use an if-else or switch statement
-	   
-   }
+	   String output = "";							// TODO: Print the content of this box (" X " if it Player.X, " O " for Player.O and "   " for Player.Empty)
+	   if(content == Player.EMPTY) {									// Hint: Can use an if-else or switch statement
+	   output = "";
+	   } else if(content == Player.X) {
+		   output = "X";
+	   } else if(content == Player.O) {
+		   output = "O";
+	   }
+	   System.out.println(output);
+	   }	   
 }
